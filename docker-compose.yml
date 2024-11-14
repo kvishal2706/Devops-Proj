@@ -1,0 +1,32 @@
+services:
+  posts:
+    build: ./posts
+    ports:
+      - "4000:4000"
+    networks:
+      - my-network
+
+  comments:
+    build: ./comments
+    ports:
+      - "4001:4001"
+    networks:
+      - my-network
+
+  event-bus:
+    build: ./event-bus
+    ports:
+      - "4005:4005"
+    networks:
+      - my-network
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:80"
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
